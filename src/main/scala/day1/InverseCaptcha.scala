@@ -12,7 +12,8 @@ object InverseCaptcha {
   }
 
   def solveB(input: String, converter: String => Array[Int]): Int = {
-    0
+    val array = converter.apply(input)
+    array.indices.map(i => if (array(i) == array((i + array.length / 2) % array.length)) array(i) else 0).sum
   }
 
   def main(args: Array[String]): Unit = {
