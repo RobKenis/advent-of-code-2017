@@ -6,13 +6,18 @@ object InverseCaptcha {
 
   def toArray: String => Array[Int] = { input: String => input.toCharArray.map(_.asDigit) }
 
-  def solve(input: String, converter: String => Array[Int]): Int = {
+  def solveA(input: String, converter: String => Array[Int]): Int = {
     val array = converter.apply(input)
     array.indices.map(i => if (array(i) == array((i + 1) % array.length)) array(i) else 0).sum
   }
 
+  def solveB(input: String, converter: String => Array[Int]): Int = {
+    0
+  }
+
   def main(args: Array[String]): Unit = {
-    print(solve(input, toArray))
+    println(solveA(input, toArray))
+    println(solveB(input, toArray))
   }
 
 }
