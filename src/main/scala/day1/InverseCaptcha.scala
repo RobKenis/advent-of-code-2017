@@ -14,4 +14,8 @@ object InverseCaptcha {
   def solveB(input: Array[Int]): Int = {
     input.indices.map(i => if (ints(i) == ints((i + ints.length / 2) % ints.length)) ints(i) else 0).sum
   }
+
+  def solve(input: String, toArray: String => Array[Int], solve: Array[Int] => Int): Int = {
+    toArray.andThen(solve).apply(input)
+  }
 }
