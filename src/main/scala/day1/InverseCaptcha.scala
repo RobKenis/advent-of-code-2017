@@ -7,21 +7,11 @@ object InverseCaptcha {
 
   def toArray: String => Array[Int] = { input: String => input.toCharArray.map(_.asDigit) }
 
-  def solveA(i: Int): Int = {
-    if (ints(i) == ints((i + 1) % ints.length)) ints(i) else 0
+  def solveA(input: Array[Int]): Int = {
+    input.indices.map(i => if (ints(i) == ints((i + 1) % ints.length)) ints(i) else 0).sum
   }
 
-  def solveB(i: Int): Int = {
-    if (ints(i) == ints((i + ints.length / 2) % ints.length)) ints(i) else 0
+  def solveB(input: Array[Int]): Int = {
+    input.indices.map(i => if (ints(i) == ints((i + ints.length / 2) % ints.length)) ints(i) else 0).sum
   }
-
-  def solve(input: Array[Int], resolver: Int => Int): Int = {
-    input.indices.map(resolver).sum
-  }
-
-  def main(args: Array[String]): Unit = {
-    println(solve(ints, solveA))
-    println(solve(ints, solveB))
-  }
-
 }
